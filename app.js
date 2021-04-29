@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const mongoose = require("mongoose");
+const exphbs = require("express-handlebars");
 
 // 設定連線到 mongoDB
 mongoose.connect("mongodb://localhost/todo-list", {
@@ -23,9 +24,12 @@ db.once("open", () => {
   console.log("mongodb connected!");
 });
 
+//template
+app.engine("hbs", exphbs({ defaultLayout: "main", extname: ".hbs" }));
+app.set("view engine", "hbs");
 // 設定首頁路由
 app.get("/", (req, res) => {
-  res.send("hello world");
+  res.render("index");
 });
 
 // 設定 port 3000
