@@ -38,6 +38,7 @@ app.set("view engine", "hbs");
 app.get("/", (req, res) => {
   Todo.find()
     .lean()
+    .sort({ name: "desc" })
     .then((todos) => res.render("index", { todos }))
     .catch((error) => console.error(error));
 });
