@@ -7,7 +7,7 @@ const methodOverride = require("method-override");
 
 const routes = require("./routes");
 require("./config/mongoose");
-
+const PORT = process.env.PORT || 3000;
 const app = express();
 // 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,6 +23,6 @@ app.set("view engine", "hbs");
 app.use(routes);
 
 // 設定 port 3000
-app.listen(3000, () => {
-  console.log("App is running on http://localhost:3000");
+app.listen(PORT, () => {
+  console.log(`App is running on http://localhost:${PORT}`);
 });
